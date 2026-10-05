@@ -28,14 +28,27 @@ body {
         font-weight: bold;
     }
 
-    &_btn_tareas{
+    .btn_tareas{
         display: none;
+    }
+
+    @media(min-width: 750px){
+        display: flex;
+        gap: 40px;
+        padding: 40px;
+
+        .btn_tareas{
+            display: grid;
+            padding: 5px;
+
+        }   
     }
 }
 
 main{
     flex: 1;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .container_title{
@@ -52,7 +65,7 @@ main{
             align-items: center;
             gap: 10px;
             
-            div{
+            .container_pendientes{
                 display: none;
                 height: 25px;
                 background-color: v.$blue-ligth;
@@ -91,16 +104,16 @@ form{
             color: white;
             border-radius: 10px;
             font-weight: bold;
-        }
-        
-        button[type="submit"]:hover{
-            cursor: pointer;
-            background-color: v.$btn-hover;
+
+            &:hover{
+                cursor: pointer;
+                background-color: v.$btn-hover;
+            }
         }
 }
 
 
-.main_btn_tareas{
+.btn_tareas{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
@@ -129,13 +142,18 @@ form{
     }
 }
 
+.btn_tareas_main{
+    @media(min-width: 750px){
+        display: none;
+    }
+}
+
 footer{
     display: flex;
     justify-content: space-around;    
     font-size: .7rem;
     background-color: v.$blue-extra-ligth;
     padding: 40px;
-    color: v.$neutral-text;
-    
+    color: v.$neutral-text;   
 }
 

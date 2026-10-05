@@ -24,13 +24,25 @@ body {
   font-size: 1.2rem;
   font-weight: bold;
 }
-.header_btn_tareas {
+.header .btn_tareas {
   display: none;
+}
+@media (min-width: 750px) {
+  .header {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+  }
+  .header .btn_tareas {
+    display: grid;
+    padding: 5px;
+  }
 }
 
 main {
   flex: 1;
   padding: 20px;
+  margin: 0 auto;
 }
 
 .container_title {
@@ -47,7 +59,7 @@ main {
   align-items: center;
   gap: 10px;
 }
-.container_title_div div div {
+.container_title_div div .container_pendientes {
   display: none;
   height: 25px;
   background-color: #B4C5FF;
@@ -89,7 +101,7 @@ form button[type=submit]:hover {
   background-color: #3d76f1;
 }
 
-.main_btn_tareas {
+.btn_tareas {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
@@ -97,7 +109,7 @@ form button[type=submit]:hover {
   padding: 10px;
   border-radius: 10px;
 }
-.main_btn_tareas button {
+.btn_tareas button {
   padding: 15px;
   border: none;
   background-color: #DBE1FF;
@@ -106,12 +118,18 @@ form button[type=submit]:hover {
   border-radius: 10px;
   cursor: pointer;
 }
-.main_btn_tareas button:hover {
+.btn_tareas button:hover {
   background-color: #EEF0FF;
 }
-.main_btn_tareas .btn-activo {
+.btn_tareas .btn-activo {
   background-color: white;
   color: #2563eb;
+}
+
+@media (min-width: 750px) {
+  .btn_tareas_main {
+    display: none;
+  }
 }
 
 footer {
