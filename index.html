@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
     <title>ToDo List</title>
 </head>
 <body>
 
-    <header>
+    <header class="header">
         <div>
-
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
             <p>Today</p>
         </div>
 
-        <div>
+        <div class="header_btn_tareas">
             <button>Todas</button>
             <button>Pendientes</button>
             <button>Completadas</button>
@@ -22,34 +23,30 @@
 
     <main>
 
-        <div>
-            <div>
+        <div class="container_title">
+            <div class="container_title_div">
                 <div>
                     <h1>Mis Tareas</h1>
                     <div>
-                        <p></p>
+                        <p>3 pendientes</p>
                     </div>
                 </div>
                 
                 <p class="fecha"></p>
             </div>
-            <p>Mantén tu mente despejada y avanza con calma paso a paso</p>
+            <p>Mantén tu mente despejada y avanza con calma paso a paso.</p>
         </div>
 
         <form action="#">
-            <div>
-                <label for="tarea">Nueva tarea</label>
-                <input type="text" id="tarea" name="tarea" placeholder="¿Qué tienes pendiente hoy?">
-            </div>
+            <input type="text" id="tarea" name="tarea" placeholder="¿Qué tienes pendiente hoy?">
             <button type="submit">+ Agregar</button>
         </form>
 
-        <div>
+        <div class="main_btn_tareas">
             <button>Todas</button>
             <button>Pendientes</button>
             <button>Completadas</button>
         </div>
-
 
         <section>
 
@@ -57,14 +54,14 @@
 
             </div>
 
-
         </section>
 
-        <footer>
-            <p>Today Task Management</p>
-            <p>Designed for high-focus productivity</p>
-        </footer>
     </main>
+
+    <footer>
+        <p>Today Task Management</p>
+        <p>Designed for high-focus productivity</p>
+    </footer>
     
 </body>
 </html>

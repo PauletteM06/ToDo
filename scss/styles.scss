@@ -1,0 +1,141 @@
+@use 'variables' as v;
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: v.$neutral-text;
+    background-color: v.$blue-bg-body;
+}
+
+
+.header {
+    padding: 20px;
+    margin-bottom: 20px;
+    & div:nth-of-type(1){
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    &_btn_tareas{
+        display: none;
+    }
+}
+
+main{
+    flex: 1;
+    padding: 20px;
+}
+
+.container_title{
+    margin-bottom: 30px;
+    &_div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        
+
+        div{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+            div{
+                display: none;
+                height: 25px;
+                background-color: v.$blue-ligth;
+                font-weight: bold;
+                color: v.$neutral-text;
+                font-size: .7rem;
+                border-radius: 15px;
+                padding: 3px;
+            }
+        }
+    }
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: white;
+    margin-bottom: 40px;
+    padding: 10px;
+    border-radius: 10px;
+        input{
+            background-color: v.$blue-extra-ligth;
+            padding: 15px;
+            border: none;
+            outline: none;
+            margin-bottom: 10px;
+            border-radius: 10PX;
+        }
+    
+        button[type="submit"]{
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: v.$primary-color;
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
+        button[type="submit"]:hover{
+            cursor: pointer;
+            background-color: v.$btn-hover;
+        }
+}
+
+
+.main_btn_tareas{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    background-color: v.$blue-extra-ligth;
+    padding: 10px;
+    border-radius: 10px;
+
+    
+    button{
+        padding: 15px;
+        border: none;
+        background-color: v.$blue-extra-ligth;
+        font-weight: bold;
+        color: v.$neutral-text;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background-color: v.$blue-bg-body;
+    }
+
+    .btn-activo{
+        background-color: white;
+        color: v.$primary-color;
+    }
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;    
+    font-size: .7rem;
+    background-color: v.$blue-extra-ligth;
+    padding: 40px;
+    color: v.$neutral-text;
+    
+}
+

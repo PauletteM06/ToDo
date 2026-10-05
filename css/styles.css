@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #0F172A;
+  background-color: #EEF0FF;
+}
+
+.header {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.header div:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.header_btn_tareas {
+  display: none;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.container_title {
+  margin-bottom: 30px;
+}
+.container_title_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.container_title_div div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.container_title_div div div {
+  display: none;
+  height: 25px;
+  background-color: #B4C5FF;
+  font-weight: bold;
+  color: #0F172A;
+  font-size: 0.7rem;
+  border-radius: 15px;
+  padding: 3px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: white;
+  margin-bottom: 40px;
+  padding: 10px;
+  border-radius: 10px;
+}
+form input {
+  background-color: #DBE1FF;
+  padding: 15px;
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+  border-radius: 10PX;
+}
+form button[type=submit] {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+}
+form button[type=submit]:hover {
+  cursor: pointer;
+  background-color: #3d76f1;
+}
+
+.main_btn_tareas {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  background-color: #DBE1FF;
+  padding: 10px;
+  border-radius: 10px;
+}
+.main_btn_tareas button {
+  padding: 15px;
+  border: none;
+  background-color: #DBE1FF;
+  font-weight: bold;
+  color: #0F172A;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.main_btn_tareas button:hover {
+  background-color: #EEF0FF;
+}
+.main_btn_tareas .btn-activo {
+  background-color: white;
+  color: #2563eb;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.7rem;
+  background-color: #DBE1FF;
+  padding: 40px;
+  color: #0F172A;
+}
+
+/*# sourceMappingURL=styles.css.map */
