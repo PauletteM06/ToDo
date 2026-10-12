@@ -15,9 +15,9 @@
         </div>
 
         <div class="btn_tareas">
-            <button>Todas</button>
-            <button>Pendientes</button>
-            <button>Completadas</button>
+            <button type="button" class="btn_tareas_todas">Todas</button>
+            <button type="button" class="btn_tareas_pendientes">Pendientes</button>
+            <button type="button" class ="btn_tareas_completadas">Completadas</button>
         </div>
     </header>
 
@@ -28,7 +28,7 @@
                 <div>
                     <h1>Mis Tareas</h1>
                     <div class="container_pendientes">
-                        <p>3 pendientes</p>
+                        <p class="pendientes"></p>
                     </div>
                 </div>
                 
@@ -37,18 +37,20 @@
             <p>Mantén tu mente despejada y avanza con calma paso a paso.</p>
         </div>
 
-        <form action="#">
+        <form class="form" action="#">
             <input type="text" id="tarea" name="tarea" placeholder="¿Qué tienes pendiente hoy?">
             <button type="submit">+ Agregar</button>
         </form>
+        <p class="error" style="color: red;"></p>
+
 
         <div class="btn_tareas_main btn_tareas ">
-            <button>Todas</button>
-            <button>Pendientes</button>
-            <button>Completadas</button>
+            <button type="button" class="btn_tareas_todas">Todas</button>
+            <button type="button" class="btn_tareas_pendientes">Pendientes</button>
+            <button type="button" class ="btn_tareas_completadas">Completadas</button>
         </div>
 
-        <section>
+        <section class="tareas">
 
             <div class="lista-tareas">
 
@@ -62,6 +64,8 @@
         <p>Today Task Management</p>
         <p>Designed for high-focus productivity</p>
     </footer>
+
+    <script src="main.js"></script>
     
 </body>
 </html>
