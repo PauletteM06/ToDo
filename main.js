@@ -6,6 +6,8 @@ const errorInput = document.querySelector('.error');
 const listaTareas = document.querySelector('.lista-tareas');
 
 //BTNS Filtros
+const btnContenedor = document.querySelector('.btn_tareas');
+
 const btnTodas = document.querySelector('.btn_tareas_todas');
 const btnPendientes = document.querySelector('.btn_tareas_pendientes');
 const btnCompletadas = document.querySelector('.btn_tareas_completadas');
@@ -62,7 +64,7 @@ listaTareas.addEventListener('click', (event) => {
 })
 
 listaTareas.addEventListener('change', (event) => {
-    let input = event.target;
+    const input = event.target;
     let idInput = parseInt(input.dataset.check);
     const inputCheck = event.target.checked;
 
@@ -73,18 +75,36 @@ listaTareas.addEventListener('change', (event) => {
         
         }
     })
-
     renderizarTareas(); 
     
 })
+let filtroActivo = 'todas';
+
+btnContenedor.addEventListener('click', (event) => {
+    const btn = event.target;
+    const btnName = btn.dataset.name;
+
+    if (!['todas', 'pendientes', 'completadas'].includes(btnName)) return;
+
+    filtroActivo = btnName;
+    renderizarTareas();
+});
 
 
 function renderizarTareas() {
 
     listaTareas.innerHTML = '';
 
+    let mostrarTareas = tareas;
+
+    if (filtroActivo === 'pendientes') {
+        mostrarTareas = tareas.filter(tarea => !tarea.completada);
+    } else if (filtroActivo === 'completadas') {
+        mostrarTareas = tareas.filter(tarea => tarea.completada);
+    }
+
     //Recorre cada tarea creada y por cada una crea un contenedor con el texto de la tarea
-    let newTareas = tareas.map( tarea => {
+    let newTareas = mostrarTareas.map( tarea => {
         let divContenedor = document.createElement('div');
         divContenedor.classList.add('tarea');
         let checkbox = document.createElement('input');
@@ -107,7 +127,6 @@ function renderizarTareas() {
     })
 
     contadorPendientes = tareas.filter(tarea => !tarea.completada).length;
-
     pendientes.textContent = contadorPendientes === 1? ' 1 pendiente': `${contadorPendientes} pendientes`;
 
 
