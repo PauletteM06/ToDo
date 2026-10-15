@@ -170,19 +170,29 @@ form button[type=submit]:hover {
 .tareas .lista-tareas .tarea input {
   margin-right: 10px;
 }
-.tareas .lista-tareas .tarea button {
+@media (min-width: 750px) {
+  .tareas {
+    margin: 0 auto;
+    width: 60%;
+  }
+}
+
+.btn_edit {
+  position: absolute;
+  right: 55px;
+  bottom: 13px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn_delete {
   position: absolute;
   right: 15px;
   bottom: 13px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-@media (min-width: 750px) {
-  .tareas {
-    margin: 0 auto;
-    width: 60%;
-  }
 }
 
 .completada {

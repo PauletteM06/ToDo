@@ -189,15 +189,6 @@ form{
             input{
                 margin-right: 10px;
             }
-
-            button{
-                position: absolute;
-                right: 15px;
-                bottom: 13px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
         }
     }
 
@@ -205,6 +196,24 @@ form{
         margin: 0 auto;
         width: 60%;
     }
+}
+
+.btn_edit{
+    position: absolute;
+    right: 55px;
+    bottom: 13px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn_delete{
+    position: absolute;
+    right: 15px;
+    bottom: 13px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .completada{

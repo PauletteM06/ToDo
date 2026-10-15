@@ -2,6 +2,7 @@
 const pendientes = document.querySelector('.pendientes');
 const form = document.querySelector('.form');
 const inputForm = document.getElementById('tarea');
+const btnSubmit = document.querySelector('.btn_submit');
 const errorInput = document.querySelector('.error');
 const listaTareas = document.querySelector('.lista-tareas');
 
@@ -16,6 +17,8 @@ const btnCompletadas = document.querySelector('.btn_tareas_completadas');
 let tareas = [];
 let idTareas = 1;
 let contadorPendientes = 0;
+let idEdicion = null;
+
 
 
 //Evento submit
@@ -34,33 +37,55 @@ form.addEventListener('submit', (event) =>{
         return;
     }
 
+    if(idEdicion === null){
+        //Crear nueva tarea
+        let nuevaTarea = {
+            id: idTareas,
+            texto: tarea,
+            completada: false
+        }
 
+        idTareas++;
 
-    //Crear nueva tarea
-    let nuevaTarea = {
-        id: idTareas,
-        texto: tarea,
-        completada: false
-    }
+        //Agregar esa tarea al array
+        tareas.push(nuevaTarea);
+        renderizarTareas();
 
-    idTareas++;
-    //Agregar esa tarea al array
-    tareas.push(nuevaTarea);
-    renderizarTareas();
-
-    form.reset();
+        form.reset();
    
+
+    }else {
+        let id = parseInt(idEdicion);
+        const tareaEditar = tareas.find(tarea => tarea.id === id);
+        tareaEditar.texto = tarea;
+        renderizarTareas();
+
+        form.reset();
+        idEdicion = null;
+        btnSubmit.textContent = '+ Agregar';
+    }
 })
 
-listaTareas.addEventListener('click', (event) => {
-    let boton = event.target.closest('.btn_delete');
 
-    if (boton !== null){
-        let idBtn = parseInt(boton.dataset.id);
+listaTareas.addEventListener('click', (event) => {
+    let botonDelete = event.target.closest('.btn_delete');
+    let botonEdit = event.target.closest('.btn_edit');
+    let idEdit = parseInt(botonEdit.dataset.id);
+
+    if (botonDelete !== null){
+        let idBtn = parseInt(botonDelete.dataset.id);
         tareas = tareas.filter(tarea => tarea.id !== idBtn);
         
         renderizarTareas();
     }
+
+    if(botonEdit !== null){
+        idEdicion = idEdit;
+        const tareaEditar = tareas.find(tarea => tarea.id === idEdit);
+        inputForm.value = tareaEditar.texto;
+        btnSubmit.textContent = 'Actualizar';
+    }
+
 })
 
 listaTareas.addEventListener('change', (event) => {
@@ -107,12 +132,20 @@ function renderizarTareas() {
     let newTareas = mostrarTareas.map( tarea => {
         let divContenedor = document.createElement('div');
         divContenedor.classList.add('tarea');
+
         let checkbox = document.createElement('input');
         checkbox.checked = tarea.completada;
         checkbox.type = 'checkbox';
         checkbox.setAttribute("data-check", tarea.id);
+
         let textTarea = document.createElement('p');
         textTarea.textContent = tarea.texto;
+
+        let btnEdit = document.createElement('button');
+        btnEdit.classList.add('btn_edit')
+        btnEdit.setAttribute('data-id', tarea.id);
+        btnEdit.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415" /><path d="M16 5l3 3" /></svg>';
+
         let btnDelete = document.createElement('button');
         btnDelete.classList.add('btn_delete');
         btnDelete.setAttribute("data-id", tarea.id);
@@ -122,6 +155,7 @@ function renderizarTareas() {
             
         divContenedor.appendChild(checkbox);
         divContenedor.appendChild(textTarea);
+        divContenedor.appendChild(btnEdit);
         divContenedor.appendChild(btnDelete);
         return divContenedor;
     })
