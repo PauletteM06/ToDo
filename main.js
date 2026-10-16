@@ -5,6 +5,7 @@ const inputForm = document.getElementById('tarea');
 const btnSubmit = document.querySelector('.btn_submit');
 const errorInput = document.querySelector('.error');
 const listaTareas = document.querySelector('.lista-tareas');
+const avisoVacio = document.querySelector('.aviso');
 
 //BTNS Filtros
 const btnContenedor = document.querySelector('.btn_tareas');
@@ -19,6 +20,7 @@ let idTareas = 1;
 let contadorPendientes = 0;
 let idEdicion = null;
 
+tareas = JSON.parse(localStorage.getItem('tareas')) || [];
 
 
 //Evento submit
@@ -49,6 +51,7 @@ form.addEventListener('submit', (event) =>{
 
         //Agregar esa tarea al array
         tareas.push(nuevaTarea);
+        localStorage.setItem("tareas", JSON.stringify(tareas));
         renderizarTareas();
 
         form.reset();
@@ -58,32 +61,41 @@ form.addEventListener('submit', (event) =>{
         let id = parseInt(idEdicion);
         const tareaEditar = tareas.find(tarea => tarea.id === id);
         tareaEditar.texto = tarea;
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+
         renderizarTareas();
 
         form.reset();
         idEdicion = null;
         btnSubmit.textContent = '+ Agregar';
+        btnSubmit.style.backgroundColor = '#2563eb';
     }
 })
+
+
 
 
 listaTareas.addEventListener('click', (event) => {
     let botonDelete = event.target.closest('.btn_delete');
     let botonEdit = event.target.closest('.btn_edit');
-    let idEdit = parseInt(botonEdit.dataset.id);
 
     if (botonDelete !== null){
         let idBtn = parseInt(botonDelete.dataset.id);
         tareas = tareas.filter(tarea => tarea.id !== idBtn);
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+
         
         renderizarTareas();
     }
 
     if(botonEdit !== null){
+        let idEdit = parseInt(botonEdit.dataset.id);
+
         idEdicion = idEdit;
         const tareaEditar = tareas.find(tarea => tarea.id === idEdit);
         inputForm.value = tareaEditar.texto;
         btnSubmit.textContent = 'Actualizar';
+        btnSubmit.style.backgroundColor = '#059669';
     }
 
 })
@@ -95,11 +107,10 @@ listaTareas.addEventListener('change', (event) => {
 
     tareas.forEach(tarea => {
         if(tarea.id === idInput){
-            tarea.completada = inputCheck;
-            console.log(tarea);
-        
+            tarea.completada = inputCheck;        
         }
     })
+    localStorage.setItem('tareas', JSON.stringify(tareas));
     renderizarTareas(); 
     
 })
@@ -116,16 +127,22 @@ btnContenedor.addEventListener('click', (event) => {
 });
 
 
+let mostrarTareas = tareas;
 function renderizarTareas() {
 
     listaTareas.innerHTML = '';
 
-    let mostrarTareas = tareas;
+    if (filtroActivo === 'todas') {
+        mostrarTareas = tareas;
+        mostrarMensaje("Aún no tienes tareas. ¡Agrega la primera!");
 
-    if (filtroActivo === 'pendientes') {
+    } else if (filtroActivo === 'pendientes') {
         mostrarTareas = tareas.filter(tarea => !tarea.completada);
+        mostrarMensaje("¡Todo al día! No tienes tareas pendientes.");
+
     } else if (filtroActivo === 'completadas') {
         mostrarTareas = tareas.filter(tarea => tarea.completada);
+        mostrarMensaje("Todavía no has completado ninguna tarea.");
     }
 
     //Recorre cada tarea creada y por cada una crea un contenedor con el texto de la tarea
@@ -170,3 +187,10 @@ function renderizarTareas() {
     })
 }
 
+function mostrarMensaje(mensaje) {
+    avisoVacio.textContent = mostrarTareas.length === 0
+        ? mensaje
+        : '';
+}
+
+renderizarTareas();
